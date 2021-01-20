@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>苏蝉</title>
+ <link href="http://DaccPonding.github.io/atom.xml" rel="self"/>
+ <link href="http://DaccPonding.github.io/"/>
+ <updated>2021-01-21T00:37:04+08:00</updated>
+ <id>http://DaccPonding.github.io</id>
+ <author>
+   <name></name>
+   <email></email>
+ </author>
+
+ 
+ <entry>
+   <title>Docker和yaml</title>
+   <link href="http://DaccPonding.github.io/posts/Docker%E5%92%8Cyaml"/>
+   <updated>2019-09-09T00:00:00+08:00</updated>
+   <id>http://DaccPonding.github.io/posts/Docker和yaml</id>
+   <content type="html">&lt;h1 id=&quot;9月9&quot;&gt;&lt;strong&gt;9月9&lt;/strong&gt;&lt;/h1&gt;
+
+&lt;h4 id=&quot;docker&quot;&gt;&lt;strong&gt;Docker&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;h6 id=&quot;docker架构&quot;&gt;&lt;strong&gt;Docker架构&lt;/strong&gt;&lt;/h6&gt;
+
+&lt;p&gt;使用C/S架构。通过远程API管理和创建Docker容器。&lt;/p&gt;
+
+&lt;p&gt;Docker容器通过Docker镜像创建。&lt;/p&gt;
+
+&lt;p&gt;两者关系相当于对象与类。&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Docker 镜像(Images)&lt;/th&gt;
+      &lt;th&gt;Docker 镜像是用于创建 Docker 容器的模板。&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Docker 容器(Container)&lt;/td&gt;
+      &lt;td&gt;容器是独立运行的一个或一组应用。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Docker 客户端(Client)&lt;/td&gt;
+      &lt;td&gt;Docker 客户端通过命令行或者其他工具使用 Docker API (https://docs.docker.com/reference/api/docker_remote_api) 与 Docker 的守护进程通信。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Docker 主机(Host)&lt;/td&gt;
+      &lt;td&gt;一个物理或者虚拟的机器用于执行 Docker 守护进程和容器。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Docker 仓库(Registry)&lt;/td&gt;
+      &lt;td&gt;Docker 仓库用来保存镜像，可以理解为代码控制中的代码仓库。Docker Hub(&lt;a href=&quot;https://hub.docker.com/&quot;&gt;https://hub.docker.com&lt;/a&gt;) 提供了庞大的镜像集合供使用。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Docker Machine&lt;/td&gt;
+      &lt;td&gt;Docker Machine是一个简化Docker安装的命令行工具，通过一个简单的命令行即可在相应的平台上安装Docker，比如VirtualBox、 Digital Ocean、Microsoft Azure。&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Docker是 Docker.Inc 公司开源的一个基于 LXC技术之上构建的&lt;strong&gt;Container容器引擎&lt;/strong&gt;，基于Go语言并遵从Apache2.0协议开源。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;LXC&lt;/strong&gt;全拼是linux containners，linux容器，是一种虚拟化技术。Docker就是linux容器的一种封装提供简单易用的容器使用接口。&lt;/p&gt;
+
+&lt;h6 id=&quot;docker能干嘛&quot;&gt;&lt;strong&gt;Docker能干嘛&lt;/strong&gt;&lt;/h6&gt;
+
+&lt;p&gt;开发者可以搭建他们的应用仅仅一次，就能保证让这个应用保持一致的跑在任何地方。运营人员可以将他们的服务器配置一遍，就能跑任何应用。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;提供一次性环境。本地测试他人软件，持续集成的时候提供单元测试和构建的环境。&lt;/li&gt;
+  &lt;li&gt;提供弹性的云服务。docker容器可以随开随关，很适合动态扩容和缩容。&lt;/li&gt;
+  &lt;li&gt;组件微服务架构。通过多个容器，一台机器跑多个服务。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h6 id=&quot;docker常用命令&quot;&gt;&lt;strong&gt;Docker常用命令&lt;/strong&gt;&lt;/h6&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker images&lt;/code&gt; 显示本地已有镜像；&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker info&lt;/code&gt; 显示docker系统信息；&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker commit -m -a&lt;/code&gt; 提交更新后的镜像；&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker build&lt;/code&gt; 通过Dockerfile来构建镜像；&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker import&lt;/code&gt; 本地导入镜像；&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker search&lt;/code&gt; 查找仓库中镜像；&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker push&lt;/code&gt; 将镜像推送到仓库；
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker push 账号名/镜像名:tag&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker pull&lt;/code&gt; 将仓库中镜像下载到本地；&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker save -o mysql_5.6.tar mysql:5.6&lt;/code&gt; 导出镜像到本地；&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker load &amp;amp;lt; mysql_5.6.tar&lt;/code&gt; 载入镜像；&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker rmi&lt;/code&gt; 移除镜像；
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker rmi imageID&lt;/code&gt; 移除该镜像&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker attach&lt;/code&gt; 运行中容器的stdin，进行命令执行的动作；&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker history Images&lt;/code&gt; 显示镜像的历史；&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker rm&lt;/code&gt; 删除结束了的container
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dokcer rm containerID&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker cp&lt;/code&gt; 在host和container之间拷贝文件&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker ps&lt;/code&gt; 列出正在执行containner
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker ps -a&lt;/code&gt; 列出所有执行过的containner&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker ps -l&lt;/code&gt; 列出最近一次的container&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker run&lt;/code&gt; 运行container&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker tag&lt;/code&gt; 给镜像打tag(标签)
+    &lt;ul&gt;
+      &lt;li&gt;docker tag 镜像名:tag(不填默认为latest) 镜像名:tag&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h6 id=&quot;docker-compose安装卸载&quot;&gt;&lt;strong&gt;docker-compose安装卸载&lt;/strong&gt;&lt;/h6&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo curl -L https://github.com/docker/compose/releases/download/1.17.1/docker-compose-`uname -s`-`uname -m` &amp;gt; /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;卸载&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo rm /usr/local/bin/docker-compose
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h6 id=&quot;yaml语言&quot;&gt;&lt;strong&gt;YAML语言&lt;/strong&gt;&lt;/h6&gt;
+
+&lt;p&gt;通用的数据串行化格式。专门用于写配置的语言，&lt;strong&gt;非常简洁强大&lt;/strong&gt;，远比&lt;strong&gt;JSON方便&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;语法规则：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;大小写敏感&lt;/li&gt;
+  &lt;li&gt;缩进表示层级关系&lt;/li&gt;
+  &lt;li&gt;缩进不允许使用tab，只允许空格&lt;/li&gt;
+  &lt;li&gt;缩进的空格数目不重要，只要相同层级元素左侧对齐即可。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;#表示注释，该字符一直到行尾，都会被解析器忽略。&lt;/p&gt;
+
+&lt;p&gt;YAML支持的数据结构：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;对象，键值对的集合，又称映射，哈希，字典&lt;/li&gt;
+  &lt;li&gt;数组,按次序排列的一组值，又称为序列，列表&lt;/li&gt;
+  &lt;li&gt;纯量，单个的不可再分的值。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h6 id=&quot;对象&quot;&gt;&lt;strong&gt;对象&lt;/strong&gt;&lt;/h6&gt;
+
+&lt;p&gt;对象的一组键值对，使用冒号结构表示。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;animal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pets&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;转为 JavaScript 如下。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;animal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;pets&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Yaml 也允许另一种写法，将所有键值对写成一个行内对象。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;hash&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Steve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bar&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;转为 JavaScript 如下。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;hash&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;Steve&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
+&lt;/blockquote&gt;
+
+&lt;h6 id=&quot;数组&quot;&gt;&lt;strong&gt;数组&lt;/strong&gt;&lt;/h6&gt;
+
+&lt;p&gt;一组连词线开头的行，构成一个数组。&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; - Cat
+ - Dog
+ - Goldfish
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;转成js为&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;['Cat','Dog','Goldfish']
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;子成员是一个数组，可以在该项下面缩进一个空格。&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- 
+  - Cat
+  - Dog
+  - Goldfish
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[['Cat','Dog','Goldfish']]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;数组也可以用行内表示法&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;animal:[Cat,Dog]
+{animal:['Cat','Dog']}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h6 id=&quot;复合结构&quot;&gt;&lt;strong&gt;复合结构&lt;/strong&gt;&lt;/h6&gt;
+
+&lt;p&gt;对象与数组结合使用构成混合结构&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;languages:
+ - Ruby
+ - Perl
+ - Python 
+websites:
+ YAML: yaml.org 
+ Ruby: ruby-lang.org 
+ Python: python.org 
+ Perl: use.perl.org 
+ 
+ //js
+ {
+ 	languages:['Ruby','Perl','Python'],
+ 	websites:{
+ 		 YAML: 'yaml.org',
+ 		 Ruby: 'ruby-lang.org',
+ 		 Python: 'python.org',
+ 		 Perl: 'use.perl.org',
+ 	}
+ }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</content>
+ </entry>
+ 
+
+</feed>
